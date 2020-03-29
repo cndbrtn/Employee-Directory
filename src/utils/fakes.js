@@ -1,5 +1,7 @@
 import faker from 'faker';
 
+// console.log(faker.date.past());
+
 const fakes = {
     image: faker.image.avatar(),
     name: faker.name.findName(),
@@ -10,4 +12,3 @@ const fakes = {
 
 export default fakes;
 
-// console: faker.helpers.createCard(),

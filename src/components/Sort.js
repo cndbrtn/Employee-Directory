@@ -2,8 +2,6 @@
 import React, { Component } from 'react';
 import Card from './Card'
 import Axios from 'axios'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 class Sort extends Component {
     constructor(props) {
         super(props)
@@ -19,13 +17,11 @@ class Sort extends Component {
             'https://randomuser.me/api/?results=50'
         Axios.get(query)
             .then(people => {
-                // console.log(people.data.results)
                 const employees = people.data.results;
                 this.setState({
                     sortState: 'asc',
                     employees: employees
                 })
-                // console.log(this.state.employees)
             })
     }
    
@@ -45,7 +41,6 @@ class Sort extends Component {
                 console.log(sort)
                 return this.setState({ sortState: 'asc', employees: ascEmp });
             default:
-                // console.log(sort)
                 return this.setState({ sortState: 'desc', employees: employees })
         }
     }
@@ -73,7 +68,6 @@ class Sort extends Component {
     
     handleFilter(e) {
         const age = e.currentTarget.dataset.id;
-        // const ageInt = parseInt(age);
         const employees = this.state.employees;
         console.log('hit', age);
 
@@ -81,8 +75,7 @@ class Sort extends Component {
             return window.location.reload();
         }
 
-        // const 
-
+        // eslint-disable-next-line array-callback-return
         const filterEmp = employees.filter((emp) => {
             const ageInt = parseInt(emp.dob.age)
             if (ageInt <= 39) {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-// import Container from './components/Container';
-import Card from './components/Card';
-import Sort from './components/Sort';
+import Container from './components/Container';
+// import Card from './components/Card';
+// import Sort from './components/Sort';
 // import fakes from './utils/fakes';
 import Axios from 'axios';
 
@@ -17,13 +17,13 @@ class App extends Component {
 
     componentDidMount() {
         const query =
-            'https://randomuser.me/api/?results=50'
+            'https://randomuser.me/api/?results=5'
         Axios.get(query)
             .then(people => {
                 // console.log(people.data.results)
                 const employees = people.data.results;
                 this.setState({
-                    ...this.state.sortState,
+                    sortState: 'default',
                     employees: employees
                 })
                 // console.log(this.state.employees)
@@ -31,15 +31,7 @@ class App extends Component {
     }
 
     render() {
-        return (
-            <div>
-                {/* <nav className='navbar navbar-light bg-light'></nav> */}
-                <Sort sortState={this.state.sortState}/>
-                {/* <Container> */}
-                <Card employees={this.state.employees}/>
-                {/* </Container> */}
-            </div>
-        )
+        return <Container sortState={this.state.sortState} employees={this.state.employees} />            
     }
     
 };

@@ -1,44 +1,23 @@
-import React, { Component } from 'react';
-import Axios from 'axios';
+import React from 'react';
 
-class Card extends Component {
-    state = {
-        employees: []
-    }
-
-    componentDidMount() {
-        const query =
-            'https://randomuser.me/api/?results=50'
-        Axios.get(query)
-            .then(people => {
-                // console.log(people.data.results)
-                const employees = people.data.results;
-                this.setState({
-                    employees: employees
-                })
-                // console.log(this.state.employees)
-            })
-    }
-
-    render() {
-        const empArr = this.state.employees
-        console.log(this.state.employees)
+const Card = ({ sortedEmployees }) => {
+    // console.log(employees)
+    
         return (
             <table className="table">
-                <caption>Employees</caption>
                 <thead>
                 <tr>
                     <th scope="col">Profile Image</th>
                     <th scope="col">Name</th>
                     <th scope="col">Phone</th>
                     <th scope="col">Email</th>
-                    <th scope="col">DOB</th>
+                    <th scope="col">Birth Date</th>
                     </tr>
                 </thead>
                 <tbody>
-                {empArr.map((emp, index) => (
+                {sortedEmployees.map((emp, index) => (
                     <tr key={index}>
-                        <td><img src={emp.picture.large} alt='' /></td>
+                        <th scope="row"><img src={emp.picture.large} alt='' /></th>
                         <td>{emp.name.first} {emp.name.last}</td>
                         <td>{emp.phone}</td>
                         <td>{emp.email}</td>
@@ -50,7 +29,5 @@ class Card extends Component {
             </table>
         )
     }
-    
-}
 
 export default Card;
